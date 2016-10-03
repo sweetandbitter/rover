@@ -1,0 +1,26 @@
+This is the coding api for a rover go around a grid, and apply it to the basic web page.
+
+1 Input how many Rows and Columns your grid have in integer.
+
+2 Input your start position in 0 based.
+ex. Your row is 4, column is 5. your grid is start from (0,0) to (3,4). If your input is bigger than grid rows and columns, program will wrap your location.
+
+3 Input your start Direction. Please input capital letter N,S,E,W which stand for your start direction is North, South, East, West.
+
+4 Input your path in a string contain f,b,l,r. f,b,l,r means move forward, move backward, left turn, right turn.
+ex frf stand for foward, right, forward
+
+5 Input the obstacle as you wish. Obstacle input please use comma to seperate, and two number consider as a obstacle coordinate input(x coordinate and y coordinate).
+
+6. click rover start button to start program and you will get rover final position and whether rover is obstacled. If rover is obstacled, he will stop at the last position.If your rover goes over the grid, program will wrap your position.
+
+Here is an example of grid 3*3:
+	    N
+    [2,0] [2,1] [2,2]
+ W  [1,0] [1,1] [1,2]  E
+    [0,0] [0,1] [0,2]
+            S
+start at [1,1] direction is N, Path is ffrf, your final position will be [0,2].
+if you add a obstacle as [2,1], it will stop at [2,1] and report rover is obstacled.
+
+

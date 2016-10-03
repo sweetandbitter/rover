@@ -20,8 +20,8 @@ function rover(){
 		//console.log(obstacleArr);
 	}
 	var myRover = new moveRover(grid, location, startDir, path, obstacleArr);
-	document.getElementById("position").innerHTML = "Final Position is " + myRover.paths(path);
-	document.getElementById("obstacleStatus").innerHTML = "You are " + myRover.status;
+	document.getElementById("position").innerHTML = "Final position is " + myRover.paths(path);
+	document.getElementById("obstacleStatus").innerHTML = "Rover is " + myRover.status;
 }
 
 function moveRover(grid, location, direction, path, obstacles){
@@ -42,7 +42,6 @@ function moveRover(grid, location, direction, path, obstacles){
 				turn(path[i]);
 			}
 		}
-		wrap();
 		return this.location;
 	}
 
@@ -59,6 +58,7 @@ function moveRover(grid, location, direction, path, obstacles){
 		}
 		var increase = (path === "f") ? [x, y] : [-x, -y];
 		var newLocation = [self.location[0] + increase[0], self.location[1] + increase[1]];
+		newLocation = wrap(newLocation);
 		if(isObstacle(newLocation)) {
 			return false;
 		} 
@@ -78,9 +78,10 @@ function moveRover(grid, location, direction, path, obstacles){
 
 	}
 
-	function wrap(){
-		self.location[0] = (self.location[0] + self.grid[0]) % self.grid[0];
-		self.location[1] = (self.location[1] + self.grid[1]) % self.grid[1];
+	function wrap(location){
+		location[0] = (location[0] + self.grid[0]) % self.grid[0];
+		location[1] = (location[1] + self.grid[1]) % self.grid[1];
+		return location;
 	}
 
 	function isObstacle(newLocation){
