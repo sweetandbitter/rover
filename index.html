@@ -9,32 +9,33 @@
 		<div>
 			<span>Please input your grid width and heigth :</span><br/>
 			<label for="row">Row</label>
-			<input type="number" id="row">
+			<input type="number" id="row" min="0">
 			<label for="column">Column</label>
-			<input type="number" id="column">
+			<input type="number" id="column" min="0">
 		</div>
 		<div>
-			<label for="start">Please input your start position</label><br/>
-			<label for="startRow">Start Row</label>
+			<label for="start">Please input your start position (0 base)</label><br/>
+			<label for="startRow" min="1">Start Row</label>
 			<input type="number"  id="startRow">
-			<label for="startColumn">Strart Column</label>
+			<label for="startColumn" min="1">Strart Column</label>
 			<input type="number" id="startColumn"><br/>
-			<label for="startDirection">Start Direction (please use N,S,E,W as your location)</label>
+			<label for="startDirection">Start Direction (please use N,S,E,W in capital as your start direction)</label><br/>
 			<input type="text" id="startDirection">
 		</div>
 		<div>
-			<label>Please input your path</label><br/>
+			<label>Please input your path (using f,b,l,r in no space as your movement)</label><br/>
 			<input type="text" id="path">
 		</div>
 		<div>
-			<label>Please input your obstacle</label>
+			<label>Please input your obstacle (using comma to seperate and a pair are one obstacle)</label><br/>
 			<input type="text" id="obstacle">
 		</div>
-		<div>
+		<div class="btn">
 			<input type="button" id="submitBtn" value="rover start">
 		</div>
 	</form>
-	<div id="result"></div>
+	<div id="position"></div>
+	<div id="obstacleStatus"></div>
 	<script src="script/rover.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+body {
+	width:  50%;
+	margin: auto;
+}
+
+form * {
+	line-height: 150%;
+}
+
+.btn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

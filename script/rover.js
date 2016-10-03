@@ -20,7 +20,8 @@ function rover(){
 		//console.log(obstacleArr);
 	}
 	var myRover = new moveRover(grid, location, startDir, path, obstacleArr);
-	console.log(myRover.paths(path));
+	document.getElementById("position").innerHTML = "Final Position is " + myRover.paths(path);
+	document.getElementById("obstacleStatus").innerHTML = "You are " + myRover.status;
 }
 
 function moveRover(grid, location, direction, path, obstacles){
@@ -30,7 +31,7 @@ function moveRover(grid, location, direction, path, obstacles){
 	this.directions = ['N', 'E', 'S', 'W'];
 	this.grid = grid;
 	this.obstacles = obstacles;
-	this.status = "good";
+	this.status = "not obstacled";
 	this.paths = function(path){
 		for (var i = 0; i < path.length; i++){
 			if (path[i] === "f" || path[i] === "b"){
@@ -85,7 +86,7 @@ function moveRover(grid, location, direction, path, obstacles){
 	function isObstacle(newLocation){
 		for(var i = 0; i < self.obstacles.length; i++){
 			if(newLocation.toString() == self.obstacles[i].toString()){
-				self.status = "obstacle";
+				self.status = "obstacled";
 				return true;
 			}
 		}
