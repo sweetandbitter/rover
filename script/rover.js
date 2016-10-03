@@ -12,17 +12,25 @@ function rover(){
 	var grid = [row, column];
 	var location = [startRow, startColumn];
 	path = path.split("");
-	var myRover = new moveRover(grid, location, startDir, path, obstacle);
+	obstacle = obstacle.split(",");
+	var obstacleArr = [];
+	for(var i = 0; i < Math.floor((obstacle.length) / 2); i++){
+		obstacleArr[i] = [];
+		obstacleArr[i].push(obstacle[2*i], obstacle[2*i+1]);
+		//console.log(obstacleArr);
+	}
+	var myRover = new moveRover(grid, location, startDir, path, obstacleArr);
 	console.log(myRover.paths(path));
 }
 
-function moveRover(grid, location, direction, path, obstacle){
+function moveRover(grid, location, direction, path, obstacles){
 	self = this;
 	this.location = location;
 	this.direction = direction;
 	this.directions = ['N', 'E', 'S', 'W'];
 	this.grid = grid;
-	this.obstacle = obstacle;
+	this.obstacles = obstacles;
+	this.status = "good";
 	this.paths = function(path){
 		for (var i = 0; i < path.length; i++){
 			if (path[i] === "f" || path[i] === "b"){
@@ -50,12 +58,13 @@ function moveRover(grid, location, direction, path, obstacle){
 		}
 		var increase = (path === "f") ? [x, y] : [-x, -y];
 		var newLocation = [self.location[0] + increase[0], self.location[1] + increase[1]];
-		// if(isObstacle(newLocation)){
-		// 	return false;
-		// } 
+		if(isObstacle(newLocation)) {
+			return false;
+		} 
 		self.location = newLocation;
 		return true;
 	}
+
 	function turn(path){
 		var l = self.directions.length;
 		var index = self.directions.indexOf(self.direction);  //index 0,1,2,3 means N,E,S,W
@@ -74,7 +83,13 @@ function moveRover(grid, location, direction, path, obstacle){
 	}
 
 	function isObstacle(newLocation){
-
+		for(var i = 0; i < self.obstacles.length; i++){
+			if(newLocation.toString() == self.obstacles[i].toString()){
+				self.status = "obstacle";
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
